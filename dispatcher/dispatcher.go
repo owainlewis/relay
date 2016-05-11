@@ -36,7 +36,6 @@ func ToHttpRequest(request parser.Request) *http.Request {
 }
 
 func Run(request parser.Request) (*parser.Response, error) {
-
 	client := &http.Client{}
 	response, err := client.Do(ToHttpRequest(request))
 
@@ -50,7 +49,6 @@ func Run(request parser.Request) (*parser.Response, error) {
 }
 
 func FromFile(file string) *parser.Response {
-
 	req, err := parser.ParseFile(file)
 
 	if err != nil {
