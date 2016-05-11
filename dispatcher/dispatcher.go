@@ -15,29 +15,41 @@ func ExtractResponse(resp *http.Response) *parser.Response {
 	return &parser.Response{status, string(body)}
 }
 
-func Run(request parser.Request) (*parser.Response, error) {
+func ToHttpRequest(request parser.Request) *http.Request {
 	payloadBytes := []byte(request.Body)
 
 	method := request.Method
 	url := request.Url
 	body := bytes.NewBuffer(payloadBytes)
 
-	r, _ := http.NewRequest(method, url, body)
+	r, err := http.NewRequest(method, url, body)
+
+	if err != nil {
+		panic(err)
+	}
+
 	for k, v := range request.Headers {
 		r.Header.Set(k, v)
 	}
 
+	return r
+}
+
+func Run(request parser.Request) (*parser.Response, error) {
+
 	client := &http.Client{}
-	response, err := client.Do(r)
+	response, err := client.Do(ToHttpRequest(request))
+
 	if err != nil {
 		return nil, err
 	}
+
 	defer response.Body.Close()
 
 	return ExtractResponse(response), nil
 }
 
-func FromFile(file string) {
+func FromFile(file string) *parser.Response {
 
 	req, err := parser.ParseFile(file)
 
@@ -50,8 +62,8 @@ func FromFile(file string) {
 
 	if err != nil {
 		fmt.Println("Error making HTTP request")
-		return
+		return nil
 	}
 
-	fmt.Println(response.Body)
+	return response
 }

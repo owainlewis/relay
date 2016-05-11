@@ -23,6 +23,24 @@ type Response struct {
 	Body   string
 }
 
+func Parse(data []byte) (*RequestItem, error) {
+	var req = &RequestItem{}
+	json.Unmarshal(data, req)
+	return req, nil
+}
+
+// Checks if a given request method is valid
+func RequestMethodValid(method string) bool {
+	methods := []string{"GET", "POST", "DELETE", "PUT", "PATCH"}
+	for _, m := range methods {
+		if method == m {
+			return true
+		}
+	}
+	return false
+}
+
+// Parse a single request from a .json file
 func ParseFile(file string) (*RequestItem, error) {
 	contents, err := ioutil.ReadFile(file)
 
@@ -30,7 +48,5 @@ func ParseFile(file string) (*RequestItem, error) {
 		return nil, err
 	}
 
-	var req = &RequestItem{}
-	json.Unmarshal(contents, req)
-	return req, nil
+	return Parse(contents)
 }

@@ -1,9 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"github.com/owainlewis/relay/dispatcher"
 )
 
 func main() {
-	dispatcher.FromFile("requests/get.json")
+	response := dispatcher.FromFile("examples/get.json")
+
+	fmt.Println("===========================")
+	fmt.Println(response.Status)
+	fmt.Println("===========================")
+	fmt.Println(response.Body)
 }
