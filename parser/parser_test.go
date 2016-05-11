@@ -4,16 +4,21 @@ import (
 	"testing"
 )
 
-func TestParser(t *testing.T) {
-	request, err := ParseFile("../examples/get.json")
+func TestParserGet(t *testing.T) {
+	_, err := ParseFile("../examples/get.json")
 
 	if err != nil {
-		t.Error(err)
+		t.Error("Cannot parse file get.json")
+	}
+}
+
+func TestParserPost(t *testing.T) {
+	_, err := ParseFile("../examples/post.json")
+
+	if err != nil {
+		t.Error("Can't parse file post.json")
 	}
 
-	if request.Req.Method != "GET" {
-		t.Error("Invalid status")
-	}
 }
 
 func TestValidateRequestMethod(t *testing.T) {

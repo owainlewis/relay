@@ -11,7 +11,10 @@ import (
 
 func ExtractResponse(resp *http.Response) *parser.Response {
 	status := resp.StatusCode
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
 	return &parser.Response{status, string(body)}
 }
 
@@ -52,7 +55,7 @@ func FromFile(file string) *parser.Response {
 	req, err := parser.ParseFile(file)
 
 	if err != nil {
-		fmt.Println("Error reading file")
+		fmt.Println("Error: missing or invalid file " + file)
 		os.Exit(1)
 	}
 
@@ -60,6 +63,7 @@ func FromFile(file string) *parser.Response {
 
 	if err != nil {
 		fmt.Println("Error making HTTP request")
+		fmt.Println(err)
 		return nil
 	}
 
