@@ -2,10 +2,6 @@
 
 This library lets you write HTTP requests as JSON data and send them easily using a CLI.
 
-## TODO
-
-Collections (relay run mycollection.json)
-
 ## Why?
 
 I love tools like Postman but I wanted an easier way to distribute HTTP request around
@@ -71,3 +67,7 @@ The following fields are supported when defining relay HTTP requests
 + Url     : The full URL to a request i.e http://google.com?foo=bar
 + Headers : A map of HTTP headers
 + Body    : An optional request body. Note that you can define the request body as pure JSON
+
+## TODO
+
+Collections (relay run mycollection.json)
