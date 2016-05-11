@@ -1,0 +1,12 @@
+{   "name": "Example request",
+    "description": "Simple HTTP request",
+    "request": {
+      "method": "GET",
+      "url": "https://httpbin.org/get",
+      "headers": {
+          "Content-Type": "application/json",
+          "X-Foo": "bar"
+      },
+      "body": [["owain@owainlewis.com", "email"]]
+    }
+}
