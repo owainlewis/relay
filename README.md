@@ -45,7 +45,7 @@ We can give a name to our requests to provide a human readable reference.
 Now we can dispatch it using the CLI
 
 ```
-relay request.json
+./relay run request.json
 ```
 
 Here are some more examples
