@@ -20,13 +20,10 @@ func ExtractResponse(resp *http.Response) *parser.Response {
 
 func ToHttpRequest(request parser.Request) *http.Request {
 	payloadBytes := []byte(request.Body)
-
 	method := request.Method
 	url := request.Url
 	body := bytes.NewBuffer(payloadBytes)
-
 	r, err := http.NewRequest(method, url, body)
-
 	if err != nil {
 		panic(err)
 	}
@@ -34,7 +31,6 @@ func ToHttpRequest(request parser.Request) *http.Request {
 	for k, v := range request.Headers {
 		r.Header.Set(k, v)
 	}
-
 	return r
 }
 
@@ -47,7 +43,6 @@ func Run(request parser.Request) (*parser.Response, error) {
 	}
 
 	defer response.Body.Close()
-
 	return ExtractResponse(response), nil
 }
 
