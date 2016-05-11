@@ -67,7 +67,7 @@ Here are some more examples
 
 The following fields are supported when defining relay HTTP requests
 
-Method  : A HTTP request method (GET, POST, DELETE, PATCH etc)
-Url     : The full URL to a request i.e http://google.com?foo=bar
-Headers : A map of HTTP headers
-Body    : An optional request body. Note that you can define the request body as pure JSON
++ Method  : A HTTP request method (GET, POST, DELETE, PATCH etc)
++ Url     : The full URL to a request i.e http://google.com?foo=bar
++ Headers : A map of HTTP headers
++ Body    : An optional request body. Note that you can define the request body as pure JSON
