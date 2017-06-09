@@ -13,7 +13,11 @@ func main() {
 		cmd := args[0]
 		fileName := args[1]
 		if cmd == "run" {
-			response := dispatcher.FromFile(fileName)
+			response, err := dispatcher.FromFile(fileName)
+
+			if err != nil {
+				fmt.Println(err)
+			}
 			fmt.Println("===========================")
 			fmt.Println(response.Status)
 			fmt.Println("===========================")

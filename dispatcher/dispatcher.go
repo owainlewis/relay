@@ -3,9 +3,7 @@ package dispatcher
 import (
 	"bytes"
 	"github.com/owainlewis/relay/parser"
-	"log"
 	"net/http"
-	"os"
 )
 
 func ToHttpRequest(request parser.Request) (*http.Request, error) {
@@ -39,20 +37,18 @@ func Run(request parser.Request) (*http.Response, error) {
 	return response, nil
 }
 
-func FromFile(file string) *http.Response {
+func FromFile(file string) (*http.Response, error) {
 	req, err := parser.ParseFile(file)
 
 	if err != nil {
-		log.Println("Error: missing or invalid file " + file)
-		os.Exit(1)
+		return nil, err
 	}
 
 	response, err := Run(req.Req)
 
 	if err != nil {
-		log.Println("Error making HTTP request", err)
-		return nil
+		return nil, err
 	}
 
-	return response
+	return response, nil
 }
