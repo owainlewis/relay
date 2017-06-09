@@ -1,6 +1,6 @@
 # Relay
 
-This library lets you write HTTP requests as JSON data and send them easily using a CLI.
+This library lets you write HTTP requests as structured Yaml and send them easily using a CLI.
 
 ## Why?
 
@@ -16,12 +16,12 @@ go build
 
 # Execute a static request file
 
-./relay run examples/get.json
+./relay run examples/get.yaml
 ```
 
 ## Examples
 
-Replay HTTP requests are defined as pure JSON with a simple structure.
+Relay HTTP requests are defined as Yaml with a simple structure.
 
 We can give a name to our requests to provide a human readable reference.
 
@@ -38,7 +38,7 @@ request:
 Now we can dispatch it using the CLI
 
 ```
-./relay run request.json
+./relay run request.yaml
 ```
 
 ## In depth
@@ -52,4 +52,4 @@ The following fields are supported when defining relay HTTP requests
 
 ## TODO
 
-Collections (relay run mycollection.json)
+Collections (relay run mycollection)
