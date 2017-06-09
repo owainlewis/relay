@@ -25,38 +25,20 @@ Replay HTTP requests are defined as pure JSON with a simple structure.
 
 We can give a name to our requests to provide a human readable reference.
 
-```json
-{   "name": "Example GET request",
-    "request": {
-      "method": "GET",
-      "url": "https://httpbin.org/get",
-      "headers": {
-          "Content-Type": "application/json",
-          "X-Foo": "bar"
-      }
-    }
-}
+```yaml
+name: get-request-simple
+description: A simple HTTP get request example
+request:
+  method: GET
+  url: https://httpbin.org/get
+  headers:
+    Content-Type: application/json
 ```
 
 Now we can dispatch it using the CLI
 
 ```
 ./relay run request.json
-```
-
-Here are some more examples
-
-```json
-{   "name": "Example POST request",
-    "request": {
-      "method": "POST",
-      "url": "https://httpbin.org/post",
-      "headers": {
-          "Content-Type": "application/json",
-      },
-      "body": { "Hello" : "World" }
-    }
-}
 ```
 
 ## In depth

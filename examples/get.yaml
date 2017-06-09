@@ -1,0 +1,7 @@
+name: get-request-simple
+description: A simple HTTP get request example
+request:
+  method: GET
+  url: https://httpbin.org/get
+  headers:
+    Content-Type: application/json

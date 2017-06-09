@@ -2,63 +2,55 @@ package dispatcher
 
 import (
 	"bytes"
-	"fmt"
 	"github.com/owainlewis/relay/parser"
-	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 )
 
-func ExtractResponse(resp *http.Response) *parser.Response {
-	status := resp.StatusCode
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-	return &parser.Response{status, string(body)}
-}
-
-func ToHttpRequest(request parser.Request) *http.Request {
+func ToHttpRequest(request parser.Request) (*http.Request, error) {
 	payloadBytes := []byte(request.Body)
-	method := request.Method
-	url := request.Url
 	body := bytes.NewBuffer(payloadBytes)
-	r, err := http.NewRequest(method, url, body)
+	r, err := http.NewRequest(request.Method, request.Url, body)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	for k, v := range request.Headers {
 		r.Header.Set(k, v)
 	}
-	return r
+	return r, nil
 }
 
-func Run(request parser.Request) (*parser.Response, error) {
+func Run(request parser.Request) (*http.Response, error) {
 	client := &http.Client{}
-	response, err := client.Do(ToHttpRequest(request))
+	hRequest, err := ToHttpRequest(request)
+	if err != nil {
+		return nil, err
+	}
+	response, err := client.Do(hRequest)
+
+	defer response.Body.Close()
 
 	if err != nil {
 		return nil, err
 	}
 
-	defer response.Body.Close()
-	return ExtractResponse(response), nil
+	return response, nil
 }
 
-func FromFile(file string) *parser.Response {
+func FromFile(file string) *http.Response {
 	req, err := parser.ParseFile(file)
 
 	if err != nil {
-		fmt.Println("Error: missing or invalid file " + file)
+		log.Println("Error: missing or invalid file " + file)
 		os.Exit(1)
 	}
 
 	response, err := Run(req.Req)
 
 	if err != nil {
-		fmt.Println("Error making HTTP request")
-		fmt.Println(err)
+		log.Println("Error making HTTP request", err)
 		return nil
 	}
 

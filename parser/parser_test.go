@@ -5,20 +5,11 @@ import (
 )
 
 func TestParserGet(t *testing.T) {
-	_, err := ParseFile("../examples/get.json")
+	_, err := ParseFile("../examples/get.yaml")
 
 	if err != nil {
-		t.Error("Cannot parse file get.json")
+		t.Error("Cannot parse file get.yaml")
 	}
-}
-
-func TestParserPost(t *testing.T) {
-	_, err := ParseFile("../examples/post.json")
-
-	if err != nil {
-		t.Error("Can't parse file post.json")
-	}
-
 }
 
 func TestValidateRequestMethod(t *testing.T) {

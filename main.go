@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/owainlewis/relay/dispatcher"
+	"io/ioutil"
 	"os"
 )
 
@@ -16,7 +17,8 @@ func main() {
 			fmt.Println("===========================")
 			fmt.Println(response.Status)
 			fmt.Println("===========================")
-			fmt.Println(response.Body)
+			body, _ := ioutil.ReadAll(response.Body)
+			fmt.Println(body)
 		}
 	}
 
