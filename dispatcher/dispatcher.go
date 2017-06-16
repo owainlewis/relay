@@ -9,6 +9,7 @@ import (
 func ToHttpRequest(request parser.Request) (*http.Request, error) {
 	payloadBytes := []byte(request.Body)
 	body := bytes.NewBuffer(payloadBytes)
+	
 	r, err := http.NewRequest(request.Method, request.Url, body)
 	if err != nil {
 		return nil, err
@@ -22,14 +23,14 @@ func ToHttpRequest(request parser.Request) (*http.Request, error) {
 
 func Run(request parser.Request) (*http.Response, error) {
 	client := &http.Client{}
+	
 	hRequest, err := ToHttpRequest(request)
 	if err != nil {
 		return nil, err
 	}
+	
 	response, err := client.Do(hRequest)
-
 	defer response.Body.Close()
-
 	if err != nil {
 		return nil, err
 	}
@@ -39,13 +40,11 @@ func Run(request parser.Request) (*http.Response, error) {
 
 func FromFile(file string) (*http.Response, error) {
 	req, err := parser.ParseFile(file)
-
 	if err != nil {
 		return nil, err
 	}
 
 	response, err := Run(req.Req)
-
 	if err != nil {
 		return nil, err
 	}
