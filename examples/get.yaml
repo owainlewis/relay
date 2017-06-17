@@ -1,7 +1,7 @@
-name: get-request-simple
-description: A simple HTTP get request example
+description: A simple GET request
 request:
   method: GET
   url: https://httpbin.org/get
   headers:
     Content-Type: application/json
+    Authorization: Bearer {{env `AUTH_TOKEN`}}

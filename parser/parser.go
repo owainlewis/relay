@@ -6,7 +6,7 @@ import (
 )
 
 type RequestItem struct {
-	Name        string  `yaml:"name"`
+	Schema      string  `yaml:"schema"`
 	Description string  `yaml:"description"`
 	Req         Request `yaml:"request"`
 }
@@ -27,16 +27,6 @@ func Parse(data []byte) (*RequestItem, error) {
 	var req = &RequestItem{}
 	yaml.Unmarshal(data, req)
 	return req, nil
-}
-
-func RequestMethodValid(method string) bool {
-	methods := []string{"GET", "POST", "DELETE", "PUT", "PATCH"}
-	for _, m := range methods {
-		if method == m {
-			return true
-		}
-	}
-	return false
 }
 
 func ParseFile(file string) (*RequestItem, error) {
