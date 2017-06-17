@@ -3,6 +3,8 @@ package dispatcher
 import (
 	"bytes"
 	"github.com/owainlewis/relay/parser"
+	"github.com/owainlewis/relay/template"
+	"log"
 	"net/http"
 )
 
@@ -16,20 +18,26 @@ func ToHttpRequest(request parser.Request) (*http.Request, error) {
 	}
 
 	for k, v := range request.Headers {
-		r.Header.Set(k, v)
+		expanded, err := template.Expand(v)
+		if err != nil {
+			return nil, err
+		}
+		r.Header.Set(k, expanded)
 	}
 	return r, nil
 }
 
 func Run(request parser.Request) (*http.Response, error) {
+
 	client := &http.Client{}
 
-	hRequest, err := ToHttpRequest(request)
+	httpRequest, err := ToHttpRequest(request)
 	if err != nil {
 		return nil, err
 	}
 
-	response, err := client.Do(hRequest)
+	log.Println("Running request", httpRequest)
+	response, err := client.Do(httpRequest)
 	defer response.Body.Close()
 	if err != nil {
 		return nil, err
