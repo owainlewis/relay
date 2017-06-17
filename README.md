@@ -26,13 +26,13 @@ Relay HTTP requests are defined as Yaml with a simple structure.
 We can give a name to our requests to provide a human readable reference.
 
 ```yaml
-name: get-request-simple
-description: A simple HTTP get request example
+description: A simple GET request
 request:
   method: GET
   url: https://httpbin.org/get
   headers:
     Content-Type: application/json
+    Authorization: Bearer {{env "AUTH_TOKEN"}}
 ```
 
 Now we can dispatch it using the CLI
@@ -40,15 +40,6 @@ Now we can dispatch it using the CLI
 ```
 ./relay run request.yaml
 ```
-
-## In depth
-
-The following fields are supported when defining relay HTTP requests
-
-+ Method  : A HTTP request method (GET, POST, DELETE, PATCH etc)
-+ Url     : The full URL to a request i.e http://google.com?foo=bar
-+ Headers : A map of HTTP headers
-+ Body    : An optional request body. Note that you can define the request body as pure JSON
 
 ## TODO
 
