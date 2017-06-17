@@ -4,4 +4,4 @@ request:
   url: https://httpbin.org/get
   headers:
     Content-Type: application/json
-    Authorization: Bearer {{env `AUTH_TOKEN`}}
+    Authorization: Bearer {{env "AUTH_TOKEN"}}
