@@ -1,10 +1,7 @@
-description: A simple GET request
+description: A simple POST request with body
 request:
   method: GET
   url: https://httpbin.org/get
-  query:
-    foo: bar
-    baz: qux
   headers:
     Content-Type: application/json
     Authorization: Bearer {{env "AUTH_TOKEN"}}
