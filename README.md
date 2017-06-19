@@ -30,6 +30,9 @@ description: A simple GET request
 request:
   method: GET
   url: https://httpbin.org/get
+  query:
+    foo: bar
+    baz: qux
   headers:
     Content-Type: application/json
     Authorization: Bearer {{env "AUTH_TOKEN"}}
@@ -40,7 +43,3 @@ Now we can dispatch it using the CLI
 ```
 ./relay run request.yaml
 ```
-
-## TODO
-
-Collections (relay run mycollection)
