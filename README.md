@@ -33,6 +33,10 @@ Now we can dispatch it using the CLI
 relay request.yaml
 ```
 
+### Todo
+
++ Var injection i.e /foo/:id passed via CLI
+
 ## Building from source
 
 ```
