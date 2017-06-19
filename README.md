@@ -36,6 +36,8 @@ relay request.yaml
 ### Todo
 
 + Var injection i.e /foo/:id passed via CLI
++ CLI option for casting request to CURL request
++ Pass options like proxy etc
 
 ## Building from source
 
