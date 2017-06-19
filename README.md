@@ -13,10 +13,11 @@ in version control with your project.
 ```
 git clone git@github.com:owainlewis/relay.git && cd relay
 go build
+mv relay /usr/local/bin/
 
 # Execute a static request file
 
-./relay run examples/get.yaml
+relay -f examples/get.yaml
 ```
 
 ## Examples
