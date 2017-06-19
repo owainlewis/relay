@@ -17,7 +17,7 @@ mv relay /usr/local/bin/
 
 # Execute a static request file
 
-relay -f examples/get.yaml
+relay examples/get.yaml
 ```
 
 ## Examples
@@ -42,5 +42,5 @@ request:
 Now we can dispatch it using the CLI
 
 ```
-./relay run request.yaml
+relay request.yaml
 ```
