@@ -8,18 +8,6 @@ I love tools like Postman but I wanted an easier way to distribute HTTP request 
 a team. Relay lets you treat HTTP requests for testing etc as pure data and store them
 in version control with your project.
 
-## Building from source
-
-```
-git clone git@github.com:owainlewis/relay.git && cd relay
-go build
-mv relay /usr/local/bin/
-
-# Execute a static request file
-
-relay examples/get.yaml
-```
-
 ## Examples
 
 Relay HTTP requests are defined as Yaml with a simple structure.
@@ -43,4 +31,16 @@ Now we can dispatch it using the CLI
 
 ```
 relay request.yaml
+```
+
+## Building from source
+
+```
+git clone git@github.com:owainlewis/relay.git && cd relay
+go build
+mv relay /usr/local/bin/
+
+# Execute a static request file
+
+relay examples/get.yaml
 ```
