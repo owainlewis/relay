@@ -27,17 +27,6 @@ func runFile(fileName string, verbose bool) {
 }
 
 func cli() {
-	args := os.Args[1:]
-	if len(args) == 0 {
-		fmt.Println("Missing file")
-		os.Exit(1)
-	}
-
-	verboseOutput := flag.Bool("v", false, "Verbose output")
-	flag.Parse()
-
-	file := args[0]
-	verbose := *verboseOutput
 }
 
 // Split the key value pairs used to define custom params into a map
@@ -74,7 +63,8 @@ func main() {
 	flagSet := flag.NewFlagSet("Request params", flag.ExitOnError)
 	flagSet.StringVar(&parameters, "params", "", "Request params")
 	flagSet.Parse(os.Args[2:])
-	fmt.Println(parameters)
 
-	runFile(file, verbose)
+	requestParams, _ := parseParams(parameters)
+
+	runFile(file, requestParams)
 }
