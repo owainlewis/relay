@@ -6,14 +6,19 @@ import (
 	"text/template"
 )
 
-func Expand(input string) (string, error) {
-	fm := template.FuncMap{
-		"env": func(s string) (string, error) {
-			return os.Getenv(s), nil
-		},
-	}
+// Container for variables passed by user
+type TemplateVars struct {
+	Values map[string]string
+}
 
-	t := template.New("").Funcs(fm)
+var funcMap = template.FuncMap{
+	"env": func(s string) (string, error) {
+		return os.Getenv(s), nil
+	},
+}
+
+func Expand(input string) (string, error) {
+	t := template.New("request-template").Funcs(funcMap)
 
 	data, err := t.Parse(input)
 	if err != nil {

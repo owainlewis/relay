@@ -7,14 +7,15 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 )
 
 func runFile(fileName string, verbose bool) {
 	if _, err := os.Stat(fileName); os.IsNotExist(err) {
 		fmt.Printf("Could not find file %s\n", fileName)
 		os.Exit(1)
-
 	}
+
 	response, err := dispatcher.FromFile(fileName, verbose)
 	if err != nil {
 		fmt.Println(err)
@@ -25,19 +26,55 @@ func runFile(fileName string, verbose bool) {
 	log.Println(body)
 }
 
-func main() {
-	fileName := flag.String("file", "", "File to execute")
-	verboseOutput := flag.Bool("verbose", false, "Verbose output")
-
-	flag.Parse()
-
-	file := *fileName
-	verbose := *verboseOutput
-
-	if file == "" {
-		flag.PrintDefaults()
+func cli() {
+	args := os.Args[1:]
+	if len(args) == 0 {
+		fmt.Println("Missing file")
 		os.Exit(1)
 	}
+
+	verboseOutput := flag.Bool("v", false, "Verbose output")
+	flag.Parse()
+
+	file := args[0]
+	verbose := *verboseOutput
+}
+
+// Split the key value pairs used to define custom params into a map
+func parseParams(input string) (map[string]string, error) {
+	params := make(map[string]string)
+	parts := strings.Fields(input)
+	for _, pair := range parts {
+		kv := strings.Split(pair, "=")
+		if len(kv) == 2 {
+			k := kv[0]
+			v := kv[1]
+			params[k] = v
+		}
+	}
+	return params, nil
+}
+
+func main() {
+	// Extract the first CLI argument as the file name
+	args := os.Args
+	if len(args) == 1 {
+		fmt.Println("Missing file")
+		fmt.Println("Use: relay request.yaml -params 'foo=bar'")
+		os.Exit(1)
+	}
+
+	file := args[1]
+
+	fmt.Println("File is", file)
+
+	// Convert the query params if there are any into a map
+
+	var parameters string
+	flagSet := flag.NewFlagSet("Request params", flag.ExitOnError)
+	flagSet.StringVar(&parameters, "params", "", "Request params")
+	flagSet.Parse(os.Args[2:])
+	fmt.Println(parameters)
 
 	runFile(file, verbose)
 }
