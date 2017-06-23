@@ -2,6 +2,8 @@
 
 This library lets you write HTTP requests as structured Yaml and send them easily using a CLI.
 
+[![wercker status](https://app.wercker.com/status/c209eca6ce0c52f92ca6ad091fa89117/s/master "wercker status")](https://app.wercker.com/project/byKey/c209eca6ce0c52f92ca6ad091fa89117)
+
 ## Why?
 
 I love tools like Postman but I wanted an easier way to distribute HTTP request around
