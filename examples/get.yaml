@@ -1,7 +1,7 @@
-description: A simple GET request
+description: A simple request example
 request:
   method: GET
-  url: https://httpbin.org/{{param "id"}}
+  url: https://httpbin.org/{{.method}}
   query:
     foo: bar
     baz: qux

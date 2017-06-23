@@ -10,15 +10,22 @@ in version control with your project.
 
 ## Examples
 
-Relay HTTP requests are defined as Yaml with a simple structure.
+Relay HTTP requests are defined as YAML with a simple structure.
+
+A request definition can contain the following
+
+* url 
+* method 
+* query
+* headers
 
 We can give a name to our requests to provide a human readable reference.
 
 ```yaml
-description: A simple GET request
+description: A simple request example
 request:
   method: GET
-  url: https://httpbin.org/get
+  url: https://httpbin.org/{{.method}}
   query:
     foo: bar
     baz: qux
@@ -30,12 +37,17 @@ request:
 Now we can dispatch it using the CLI
 
 ```
-relay request.yaml
+relay examples/get.yaml -params 'method=get'
 ```
+
+### Special functions
+
+#### Accessing environment variables
+
+#### Accessing params
 
 ### Todo
 
-+ Var injection i.e /foo/:id passed via CLI
 + CLI option for casting request to CURL request
 + Pass options like proxy etc
 

@@ -12,7 +12,7 @@ var funcMap = template.FuncMap{
 	},
 }
 
-func Process(input string, params map[string]string) ([]byte, error) {
+func Expand(input string, params map[string]string) ([]byte, error) {
 	tmpl := template.New("request-template").Funcs(funcMap)
 
 	t, err := tmpl.Parse(input)

@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"github.com/owainlewis/relay/dispatcher"
-	"github.com/owainlewis/relay/template"
 	"io/ioutil"
 	"log"
 	"os"
@@ -43,7 +42,7 @@ func parseParams(input string) (map[string]string, error) {
 	return params, nil
 }
 
-func cli() {
+func main() {
 	// Extract the first CLI argument as the file name
 	args := os.Args[1:]
 	if len(args) == 0 {
@@ -69,13 +68,4 @@ func cli() {
 	}
 
 	runFile(file, requestParams)
-}
-
-func main() {
-	params := map[string]string{"id": "1"}
-	result, err := template.Process("Foo is {{.id}}", params)
-
-	fmt.Println(result)
-
-	fmt.Println(err)
 }

@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"github.com/owainlewis/relay/template"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 )
@@ -42,5 +43,11 @@ func ParseFile(file string, params map[string]string) (*RequestItem, error) {
 		return nil, err
 	}
 
-	return Parse(contents)
+	expanded, err := template.Expand(string(contents), params)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return Parse(expanded)
 }
