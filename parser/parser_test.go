@@ -5,7 +5,9 @@ import (
 )
 
 func TestParserGet(t *testing.T) {
-	_, err := ParseFile("../examples/get.yaml")
+
+	params := map[string]string{"method": "get"}
+	_, err := ParseFile("../examples/get.yaml", params)
 
 	if err != nil {
 		t.Error("Cannot parse file get.yaml")
