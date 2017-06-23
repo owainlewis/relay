@@ -34,7 +34,9 @@ func Parse(data []byte) (*RequestItem, error) {
 	return req, nil
 }
 
-func ParseFile(file string) (*RequestItem, error) {
+// Parse a file. We also do template interpolation at this stage
+//
+func ParseFile(file string, params map[string]string) (*RequestItem, error) {
 	contents, err := ioutil.ReadFile(file)
 	if err != nil {
 		return nil, err

@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/owainlewis/relay/parser"
-	"github.com/owainlewis/relay/template"
 	"log"
 	"net/http"
 )
@@ -20,11 +19,7 @@ func ToHttpRequest(request parser.Request) (*http.Request, error) {
 
 	// Add HTTP headers to the request
 	for k, v := range request.Headers {
-		expanded, err := template.Expand(v)
-		if err != nil {
-			return nil, err
-		}
-		r.Header.Set(k, expanded)
+		r.Header.Set(k, v)
 	}
 
 	// Add query params to the request
@@ -44,7 +39,7 @@ func showRequest(request *http.Request) string {
 	return fmt.Sprintf("%s", request.URL.String())
 }
 
-func Run(request parser.Request, verbose bool) (*http.Response, error) {
+func Run(request parser.Request) (*http.Response, error) {
 
 	client := &http.Client{}
 
@@ -53,9 +48,7 @@ func Run(request parser.Request, verbose bool) (*http.Response, error) {
 		return nil, err
 	}
 
-	if verbose {
-		log.Println("Request:", showRequest(httpRequest))
-	}
+	log.Println("Request:", showRequest(httpRequest))
 
 	response, err := client.Do(httpRequest)
 	defer response.Body.Close()
@@ -67,13 +60,13 @@ func Run(request parser.Request, verbose bool) (*http.Response, error) {
 }
 
 // Read a request from file and return either an error or HTTP response
-func FromFile(file string, verbose bool) (*http.Response, error) {
-	req, err := parser.ParseFile(file)
+func FromFile(file string, params map[string]string) (*http.Response, error) {
+	req, err := parser.ParseFile(file, params)
 	if err != nil {
 		return nil, err
 	}
 
-	response, err := Run(req.Req, verbose)
+	response, err := Run(req.Req)
 	if err != nil {
 		return nil, err
 	}

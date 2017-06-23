@@ -1,7 +1,7 @@
 description: A simple GET request
 request:
   method: GET
-  url: https://httpbin.org/{{method}}
+  url: https://httpbin.org/{{param "id"}}
   query:
     foo: bar
     baz: qux
