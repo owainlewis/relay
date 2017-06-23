@@ -16,7 +16,6 @@ func Expand(input string, params map[string]string) ([]byte, error) {
 	tmpl := template.New("request-template").Funcs(funcMap)
 
 	t, err := tmpl.Parse(input)
-
 	if err != nil {
 		return []byte{}, err
 	}
