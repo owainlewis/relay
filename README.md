@@ -1,6 +1,6 @@
 # Relay
 
-This library lets you write HTTP requests as structured Yaml and dispatch them easily using a CLI. 
+Relay lets you write HTTP requests as easy to read, structured YAML and dispatch them easily using a CLI. 
 
 The motivation for this library is to have a Postman like tool for sharing HTTP reqests in a team. Relay lets you treat HTTP requests as human readable data files and store them in version control with your project.
 
