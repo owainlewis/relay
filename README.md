@@ -1,18 +1,16 @@
 # Relay
 
-This library lets you write HTTP requests as structured Yaml and send them easily using a CLI.
+This library lets you write HTTP requests as structured Yaml and dispatch them easily using a CLI. 
+
+The motivation for this library is to have a Postman like tool for sharing HTTP reqests in a team. Relay lets you treat HTTP requests as human readable data files and store them in version control with your project.
+
+Relay provides a CLI for executing the request only and no GUI.
 
 [![wercker status](https://app.wercker.com/status/c209eca6ce0c52f92ca6ad091fa89117/s/master "wercker status")](https://app.wercker.com/project/byKey/c209eca6ce0c52f92ca6ad091fa89117)
 
-## Why?
-
-I love tools like Postman but I wanted an easier way to distribute HTTP request around
-a team. Relay lets you treat HTTP requests for testing etc as pure data and store them
-in version control with your project.
-
 ## Examples
 
-Relay HTTP requests are defined as YAML with a simple structure.
+Relay HTTP requests are defined as YAML with a simple structure. See the examples folder for more ideas.
 
 A request definition can contain the following
 
@@ -24,8 +22,6 @@ A request definition can contain the following
 | query   | No       | Optional key value query params appended to URL |
 | headers | No       | Key value HTTP headers                          |
 
-We can give a name to our requests to provide a human readable reference.
-
 Here are some simple examples
 
 #### Get request
@@ -33,6 +29,7 @@ Here are some simple examples
 This is the most basic HTTP request with only a method and URL defined.
 
 ```yaml
+description: A simple GET request
 request:
   method: GET
   url: https://requestb.in/1ead0f91
@@ -134,4 +131,4 @@ request:
 
 ### Basic 64 Encoding
 
-Use `b64encode`
+Use `b64encode` 
