@@ -28,7 +28,23 @@ We can give a name to our requests to provide a human readable reference.
 
 Here are some simple examples
 
-#### Post requests
+#### Get request
+
+This is the most basic HTTP request with only a method and URL defined.
+
+```yaml
+request:
+  method: GET
+  url: https://requestb.in/1ead0f91
+```
+
+Dispatch this request from the CLI as follows
+
+```
+relay examples/get.yml
+```
+
+#### Post request
 
 ```yaml
 description: A simple POST request with body
@@ -58,7 +74,7 @@ Many times you will want to inject values into the templates. For example dynami
 
 You can use a -params 'k=v' flag in the CLI. Here is an example of passing in custom variables
 
-```
+```yaml
 description: Example using injected values via params
 request:
   method: GET
