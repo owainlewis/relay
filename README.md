@@ -69,7 +69,7 @@ request:
 
 Many times you will want to inject values into the templates. For example dynamic URLs like GET /foo/:id etc. 
 
-You can use a -params 'k=v' flag in the CLI. Here is an example of passing in custom variables
+You can use a `-params 'a=b c=d'` flag format in the CLI. Here is an example of passing in custom variables
 
 ```yaml
 description: Example using injected values via params
