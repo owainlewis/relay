@@ -87,18 +87,7 @@ Now we can dispatch it using the CLI
 relay examples/dynamic.yaml -params 'id=1 authToken=XXX'
 ```
 
-### Special functions
-
-#### Accessing environment variables
-
-#### Accessing params
-
-### Todo
-
-+ CLI option for casting request to CURL request
-+ Pass options like proxy etc
-
-# Functions
+## Functions
 
 A selection of functions are provided to make life easier
 
@@ -132,3 +121,8 @@ request:
 ### Basic 64 Encoding
 
 Use `b64encode` 
+
+## Roadmap
+
++ CLI option for casting request to CURL request
++ Pass client options like proxy etc
