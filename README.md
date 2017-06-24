@@ -16,18 +16,34 @@ Relay HTTP requests are defined as YAML with a simple structure.
 
 A request definition can contain the following
 
-* url 
-* method 
-* query
-* headers
+| Field   | Required | Description                                     |
+|---------|----------|-------------------------------------------------|
+| url     | Yes      | The full URL including protocol                 |
+| method  | Yes      | HTTP method as uppercase                        |
+| body    | No       | Optional HTTP request body                      |
+| query   | No       | Optional key value query params appended to URL |
+| headers | No       | Key value HTTP headers                          |
 
 We can give a name to our requests to provide a human readable reference.
 
+Here are some simple examples
+
+#### Post requests
+
 ```yaml
-description: A simple request example
+description: A simple POST request with body
+request:
+  method: POST
+  url: https://requestb.in/1ead0f91
+  body: 'Hello, World!'
+```
+
+#### Get request with query params and HTTP headers
+
+```yaml
 request:
   method: GET
-  url: https://httpbin.org/{{.method}}
+  url: https://httpbin.org/get
   query:
     foo: bar
     baz: qux
@@ -36,10 +52,26 @@ request:
     Authorization: Bearer {{env "AUTH_TOKEN"}}
 ```
 
+#### Custom variables
+
+Many times you will want to inject values into the templates. For example dynamic URLs like GET /foo/:id etc. 
+
+You can use a -params 'k=v' flag in the CLI. Here is an example of passing in custom variables
+
+```
+description: Example using injected values via params
+request:
+  method: GET
+  url: https://api.mysite.com/users/{{.id}}
+  headers:
+    Content-Type: application/json
+    Authorization: Bearer {{.authToken}}
+```
+
 Now we can dispatch it using the CLI
 
 ```
-relay examples/get.yaml -params 'method=get'
+relay examples/dynamic.yaml -params 'id=1 authToken=XXX'
 ```
 
 ### Special functions
@@ -53,14 +85,37 @@ relay examples/get.yaml -params 'method=get'
 + CLI option for casting request to CURL request
 + Pass options like proxy etc
 
-## Building from source
+# Functions
 
+A selection of functions are provided to make life easier
+
+### Environment variables
+
+The `env` function will extract an environment variable. 
+
+If the environment variable is not defined then an empty string is returned.
+
+```yaml
+description: A simple request example that makes use of environment vars
+request:
+  method: GET
+  url: https://httpbin.org/{{.method}}
+  headers:
+    Content-Type: application/json
+    Authorization: Bearer {{env "AUTH_TOKEN"}}
 ```
-git clone git@github.com:owainlewis/relay.git && cd relay
-go build
-mv relay /usr/local/bin/
 
-# Execute a static request file
+### Basic Auth
 
-relay examples/get.yaml
+```yaml
+description: A request with HTTP Basic Auth
+request:
+  method: GET
+  url: https://requestb.in/1ead0f91
+  headers:
+    Authorization: Basic {{basic "USER" "PASS"}}
 ```
+
+### Basic 64 Encoding
+
+Use `b64encode`

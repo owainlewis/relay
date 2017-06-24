@@ -6,24 +6,6 @@ import (
 	"io/ioutil"
 )
 
-type RequestItem struct {
-	Description string  `yaml:"description"`
-	Req         Request `yaml:"request"`
-}
-
-type Request struct {
-	// The HTTP method in uppercase
-	Method string `yaml:"method"`
-	// The full URL
-	Url string `yaml:"url"`
-	// HTTP headers
-	Headers map[string]string `yaml:"headers"`
-	// Query string params ?foo=bar
-	Query map[string]string `yaml:"query"`
-	// An optional HTTP request body
-	Body string `yaml:"body"`
-}
-
 func Parse(data []byte) (*RequestItem, error) {
 	var req = &RequestItem{}
 
@@ -44,7 +26,6 @@ func ParseFile(file string, params map[string]string) (*RequestItem, error) {
 	}
 
 	expanded, err := template.Expand(string(contents), params)
-
 	if err != nil {
 		return nil, err
 	}

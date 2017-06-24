@@ -2,13 +2,21 @@ package template
 
 import (
 	"bytes"
+	"encoding/base64"
 	"os"
 	"text/template"
 )
 
 var funcMap = template.FuncMap{
-	"env": func(s string) (string, error) {
-		return os.Getenv(s), nil
+	"env": func(envVar string) (string, error) {
+		return os.Getenv(envVar), nil
+	},
+	"basic": func(username string, password string) (string, error) {
+		auth := username + ":" + password
+		return base64.StdEncoding.EncodeToString([]byte(auth)), nil
+	},
+	"base64encode": func(input string) (string, error) {
+		return base64.StdEncoding.EncodeToString([]byte(input)), nil
 	},
 }
 

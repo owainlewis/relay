@@ -21,7 +21,6 @@ func ToHttpRequest(request parser.Request) (*http.Request, error) {
 	for k, v := range request.Headers {
 		r.Header.Set(k, v)
 	}
-
 	// Add query params to the request
 	if len(request.Query) > 0 {
 		q := r.URL.Query()
@@ -29,7 +28,6 @@ func ToHttpRequest(request parser.Request) (*http.Request, error) {
 			q.Add(k, v)
 		}
 		r.URL.RawQuery = q.Encode()
-
 	}
 
 	return r, nil
@@ -40,7 +38,6 @@ func showRequest(request *http.Request) string {
 }
 
 func Run(request parser.Request) (*http.Response, error) {
-
 	client := &http.Client{}
 
 	httpRequest, err := ToHttpRequest(request)

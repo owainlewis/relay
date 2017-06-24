@@ -1,0 +1,6 @@
+description: A request with HTTP Basic Auth
+request:
+  method: GET
+  url: https://requestb.in/1ead0f91
+  headers:
+    Authorization: Basic {{basic "USER" "PASS"}}

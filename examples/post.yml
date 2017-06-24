@@ -1,0 +1,5 @@
+description: A simple POST request with body
+request:
+  method: POST
+  url: https://requestb.in/1ead0f91
+  body: 'Hello, World!'

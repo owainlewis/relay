@@ -1,0 +1,7 @@
+description: Example using injected values via params
+request:
+  method: GET
+  url: https://requestb.in/1ead0f91
+  headers:
+    Content-Type: application/json
+    Authorization: Bearer {{.authToken}}

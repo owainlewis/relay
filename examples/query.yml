@@ -1,0 +1,9 @@
+description: A request with query params
+request:
+  method: GET
+  url: https://httpbin.org/get
+  query:
+    page: 1
+    limit: 10
+  headers:
+    Content-Type: application/json

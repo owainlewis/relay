@@ -1,7 +1,0 @@
-description: A simple POST request with body
-request:
-  method: GET
-  url: https://httpbin.org/get
-  headers:
-    Content-Type: application/json
-    Authorization: Bearer {{env "AUTH_TOKEN"}}

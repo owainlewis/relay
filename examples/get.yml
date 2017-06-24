@@ -1,0 +1,4 @@
+description: A simple GET request example
+request:
+  method: GET
+  url: https://httpbin.org/get
