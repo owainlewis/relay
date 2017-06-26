@@ -6,8 +6,6 @@ The motivation for this library is to have a Postman like tool for sharing HTTP 
 
 Relay provides a CLI for executing the request only and no GUI.
 
-[![wercker status](https://app.wercker.com/status/c209eca6ce0c52f92ca6ad091fa89117/s/master "wercker status")](https://app.wercker.com/project/byKey/c209eca6ce0c52f92ca6ad091fa89117)
-
 ## Quickstart
 
 Install by adding one of the binary releases to your path
