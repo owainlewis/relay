@@ -8,6 +8,15 @@ Relay provides a CLI for executing the request only and no GUI.
 
 [![wercker status](https://app.wercker.com/status/c209eca6ce0c52f92ca6ad091fa89117/s/master "wercker status")](https://app.wercker.com/project/byKey/c209eca6ce0c52f92ca6ad091fa89117)
 
+## Quickstart
+
+Install by adding one of the binary releases to your path
+
+  ```
+  source <(curl -s https://raw.githubusercontent.com/owainlewis/relay/master/install.sh) && \
+  chmod +x /usr/local/bin/relay
+  ```
+
 ## Examples
 
 Relay HTTP requests are defined as YAML with a simple structure. See the examples folder for more ideas.
