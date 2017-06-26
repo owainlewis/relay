@@ -1,5 +1,7 @@
 # Relay
 
+[![wercker status](https://app.wercker.com/status/c209eca6ce0c52f92ca6ad091fa89117/s/master "wercker status")](https://app.wercker.com/project/byKey/c209eca6ce0c52f92ca6ad091fa89117)
+
 Relay lets you write HTTP requests as easy to read, structured YAML and dispatch them easily using a CLI. 
 
 The motivation for this library is to have a Postman like tool for sharing HTTP reqests in a team. Relay lets you treat HTTP requests as human readable data files and store them in version control with your project.
