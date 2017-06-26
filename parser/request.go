@@ -2,6 +2,11 @@ package parser
 
 import "fmt"
 
+func NewRequestItem() RequestItem {
+	defaultClientOptions := Options{Timeout: 10}
+	return RequestItem{Options: defaultClientOptions}
+}
+
 type RequestItem struct {
 	Description string  `yaml:"description"`
 	Request     Request `yaml:"request"`

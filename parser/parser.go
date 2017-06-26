@@ -7,8 +7,8 @@ import (
 )
 
 func Parse(data []byte) (*RequestItem, error) {
-	//	defaultClientOpts := Options{Timeout: 10}
-	var req = &RequestItem{}
+	defaultClientOptions := Options{Timeout: 10}
+	var req = &RequestItem{Options: defaultClientOptions}
 
 	err := yaml.Unmarshal(data, req)
 	if err != nil {

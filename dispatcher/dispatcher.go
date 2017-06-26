@@ -66,7 +66,7 @@ func FromFile(file string, params map[string]string) (*http.Response, error) {
 		return nil, err
 	}
 
-	response, err := Run(req.Req)
+	response, err := Run(req.Request)
 	if err != nil {
 		return nil, err
 	}
