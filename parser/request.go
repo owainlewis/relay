@@ -4,7 +4,13 @@ import "fmt"
 
 type RequestItem struct {
 	Description string  `yaml:"description"`
-	Req         Request `yaml:"request"`
+	Request     Request `yaml:"request"`
+	// Custom options for the HTTP request client i.e timeouts etc
+	Options Options `yaml:"options"`
+}
+
+type Options struct {
+	Timeout int `yaml:"timeout"`
 }
 
 type Request struct {

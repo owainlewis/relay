@@ -30,6 +30,7 @@ A request definition can contain the following
 | body    | No       | Optional HTTP request body                      |
 | query   | No       | Optional key value query params appended to URL |
 | headers | No       | Key value HTTP headers                          |
+|         |          |                                                 |
 
 Here are some simple examples
 
@@ -130,6 +131,19 @@ request:
 ### Basic 64 Encoding
 
 Use `b64encode` 
+
+## Advanced (Timeouts etc)
+
+You can set an explicit HTTP request timeout as in the following examples:
+
+```yaml
+description: A request with explicit request timeouts
+request:
+  method: GET
+  url: https://requestb.in/1ead0f91
+options:
+  timeout: 20
+```
 
 ## Roadmap
 

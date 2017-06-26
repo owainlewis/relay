@@ -6,6 +6,7 @@ import (
 	"github.com/owainlewis/relay/parser"
 	"log"
 	"net/http"
+	"time"
 )
 
 func ToHttpRequest(request parser.Request) (*http.Request, error) {
@@ -38,7 +39,9 @@ func showRequest(request *http.Request) string {
 }
 
 func Run(request parser.Request) (*http.Response, error) {
-	client := &http.Client{}
+	var client = &http.Client{
+		Timeout: time.Second * 10,
+	}
 
 	httpRequest, err := ToHttpRequest(request)
 	if err != nil {

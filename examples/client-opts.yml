@@ -1,0 +1,6 @@
+description: A request with explicit timeouts
+request:
+  method: GET
+  url: https://requestb.in/1ead0f91
+options:
+  timeout: 20
