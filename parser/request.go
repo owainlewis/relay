@@ -1,9 +1,14 @@
 package parser
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
+
+const defaultRequestTimeout = 10
 
 func NewRequestItem() RequestItem {
-	defaultClientOptions := Options{Timeout: 10}
+	defaultClientOptions := Options{Timeout: defaultRequestTimeout}
 	return RequestItem{Options: defaultClientOptions}
 }
 
@@ -33,5 +38,13 @@ type Request struct {
 
 // Returns a request as a CURL command
 func (request *Request) Curl() string {
-	return fmt.Sprintf("curl -X%s %s", request.Method, request.Url)
+	headerParts := []string{}
+	for k, v := range request.Headers {
+		header := fmt.Sprintf("-H '%s: %s'", k, v)
+		headerParts = append(headerParts, header)
+
+	}
+
+	hdrs := strings.Join(headerParts, " ")
+	return fmt.Sprintf("curl -X %s %s %s", request.Method, hdrs, request.Url)
 }

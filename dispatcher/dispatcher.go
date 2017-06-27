@@ -35,15 +35,15 @@ func ToHttpRequest(request parser.Request) (*http.Request, error) {
 }
 
 func showRequest(request *http.Request) string {
-	return fmt.Sprintf("%s", request.URL.String())
+	return fmt.Sprintf("%s %s", request.Method, request.URL.String())
 }
 
-func Run(request parser.Request) (*http.Response, error) {
+func Run(request *parser.RequestItem) (*http.Response, error) {
 	var client = &http.Client{
 		Timeout: time.Second * 10,
 	}
 
-	httpRequest, err := ToHttpRequest(request)
+	httpRequest, err := ToHttpRequest(request.Request)
 	if err != nil {
 		return nil, err
 	}
@@ -52,21 +52,6 @@ func Run(request parser.Request) (*http.Response, error) {
 
 	response, err := client.Do(httpRequest)
 	defer response.Body.Close()
-	if err != nil {
-		return nil, err
-	}
-
-	return response, nil
-}
-
-// Read a request from file and return either an error or HTTP response
-func FromFile(file string, params map[string]string) (*http.Response, error) {
-	req, err := parser.ParseFile(file, params)
-	if err != nil {
-		return nil, err
-	}
-
-	response, err := Run(req.Request)
 	if err != nil {
 		return nil, err
 	}
