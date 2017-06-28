@@ -78,16 +78,5 @@ func handleRun(args []string) {
 }
 
 func main() {
-	args := os.Args[1:]
-	cmd := args[0]
-	cmdArgs := args[1:]
-
-	switch cmd {
-	case "run":
-		handleRun(cmdArgs)
-	case "curl":
-		handleAsCurl(cmdArgs)
-	default:
-		fmt.Println("Use: relay run request.yaml -params 'foo=bar'")
-	}
+	handleRun(os.Args[1:])
 }
