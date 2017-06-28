@@ -148,5 +148,5 @@ options:
 ## Roadmap
 
 + CLI option for casting request to CURL request
-+ Pass client options like proxy etc
++ Support for proxies
 + CI builds for multiple OS
