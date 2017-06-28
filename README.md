@@ -10,12 +10,7 @@ Relay provides a CLI for executing the request only and no GUI.
 
 ## Quickstart
 
-Install by adding one of the binary releases to your path
-
-  ```
-  source <(curl -s https://raw.githubusercontent.com/owainlewis/relay/master/install.sh) && \
-  chmod +x /usr/local/bin/relay
-  ```
+Download the relevant binary from the releases page. Add to your path i.e /usr/local/bin
 
 ## Examples
 
