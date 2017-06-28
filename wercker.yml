@@ -17,7 +17,6 @@ build:
         name: install mitchellh/gox
         code: |
           go get -u -v github.com/mitchellh/gox
-          sudo gox -build-toolchain
     # Gets the dependencies
     - script:
         name: go get
@@ -33,3 +32,4 @@ build:
         name: go test
         code: |
           go test ./...
+    - tcnksm/gox
