@@ -42,9 +42,7 @@ func (request *Request) Curl() string {
 	for k, v := range request.Headers {
 		header := fmt.Sprintf("-H '%s: %s'", k, v)
 		headerParts = append(headerParts, header)
-
 	}
-
 	hdrs := strings.Join(headerParts, " ")
 	return fmt.Sprintf("curl -X %s %s %s", request.Method, hdrs, request.Url)
 }
