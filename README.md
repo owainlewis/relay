@@ -144,4 +144,3 @@ options:
 
 + CLI option for casting request to CURL request
 + Support for proxies
-+ CI builds for multiple OS
