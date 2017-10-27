@@ -3,10 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/owainlewis/relay/commands"
 	"os"
 	"strings"
+
+	"github.com/owainlewis/relay/commands"
 )
+
+var version = "master"
 
 // Split the key value pairs used to define custom params into a map
 func parseParams(input string) (map[string]string, error) {

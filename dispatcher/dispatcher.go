@@ -3,10 +3,11 @@ package dispatcher
 import (
 	"bytes"
 	"fmt"
-	"github.com/owainlewis/relay/parser"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/owainlewis/relay/parser"
 )
 
 func ToHttpRequest(request parser.Request) (*http.Request, error) {
@@ -52,6 +53,7 @@ func Run(request *parser.RequestItem) (*http.Response, error) {
 
 	response, err := client.Do(httpRequest)
 	defer response.Body.Close()
+
 	if err != nil {
 		return nil, err
 	}
