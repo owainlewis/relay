@@ -3,6 +3,7 @@ package dispatcher
 import (
 	"bytes"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/owainlewis/relay/pkg/parser"
@@ -11,7 +12,7 @@ import (
 func toHTTPRequest(request parser.Request) (*http.Request, error) {
 	body := bytes.NewBuffer([]byte(request.Body))
 
-	r, err := http.NewRequest(request.Method, request.URL, body)
+	r, err := http.NewRequest(strings.ToUpper(request.Method), request.URL, body)
 	if err != nil {
 		return nil, err
 	}

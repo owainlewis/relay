@@ -17,11 +17,6 @@ build:
         name: install mitchellh/gox
         code: |
           go get -u -v github.com/mitchellh/gox
-    # Gets the dependencies
-    - script:
-        name: go get
-        code: |
-          go get
     # Build the project
     - script:
         name: go build
