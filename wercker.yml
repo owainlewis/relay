@@ -26,10 +26,9 @@ build:
     - script:
         name: go build
         code: |
-          go build ./...
+          go build cmd/main.go
     # Test the project
     - script:
         name: go test
         code: |
           go test ./...
-    - tcnksm/gox
