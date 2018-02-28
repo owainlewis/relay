@@ -13,15 +13,6 @@ build:
     # Sets the go workspace and places you package
     # at the right place in the workspace tree
     - setup-go-workspace
-    - script:
-        name: install mitchellh/gox
-        code: |
-          go get -u -v github.com/mitchellh/gox
-    # Build the project
-    - script:
-        name: go build
-        code: |
-          go build cmd/main.go
     # Test the project
     - script:
         name: go test
