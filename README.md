@@ -2,7 +2,7 @@
 
 [![wercker status](https://app.wercker.com/status/c209eca6ce0c52f92ca6ad091fa89117/s/master "wercker status")](https://app.wercker.com/project/byKey/c209eca6ce0c52f92ca6ad091fa89117)
 
-Relay lets you write HTTP requests as easy to read, structured YAML and dispatch them easily using a CLI. 
+Relay lets you write HTTP requests as easy to read, structured YAML and dispatch them easily using a CLI.
 
 The motivation for this library is to have a Postman like tool for sharing HTTP reqests in a team. Relay lets you treat HTTP requests as human readable data files and store them in version control with your project.
 
@@ -72,7 +72,7 @@ request:
 
 #### Custom variables
 
-Many times you will want to inject values into the templates. For example dynamic URLs like GET /foo/:id etc. 
+Many times you will want to inject values into the templates. For example dynamic URLs like GET /foo/:id etc.
 
 You can use a `-params 'a=b c=d'` flag format in the CLI. Here is an example of passing in custom variables
 
@@ -98,7 +98,7 @@ A selection of functions are provided to make life easier
 
 ### Environment variables
 
-The `env` function will extract an environment variable. 
+The `env` function will extract an environment variable.
 
 If the environment variable is not defined then an empty string is returned.
 
@@ -106,7 +106,7 @@ If the environment variable is not defined then an empty string is returned.
 description: A simple request example that makes use of environment vars
 request:
   method: GET
-  url: https://httpbin.org/{{.method}}
+  url: https://httpbin.org/get
   headers:
     Content-Type: application/json
     Authorization: Bearer {{env "AUTH_TOKEN"}}
@@ -125,7 +125,7 @@ request:
 
 ### Basic 64 Encoding
 
-Use `b64encode` 
+Use `b64encode`
 
 ## Advanced (Timeouts etc)
 

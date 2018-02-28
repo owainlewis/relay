@@ -1,7 +1,12 @@
+#!/bin/bash
+
+set -e
+
 # Release script
 # Install github-release => go get github.com/aktau/github-release
 
 RELEASE=0.1.0
+
 USERNAME=owainlewis
 REPO=relay
 
@@ -11,18 +16,18 @@ else
     echo "Creating new release $RELEASE"
     git tag -a "$RELEASE" -m "Relase version: $RELEASE"
     git push --tags
-
     github-release release \
-    --user $USERNAME \
-    --repo $REPO \
-    --tag $RELEASE \
-    --name "Relay $RELEASE" \
-    --description "Release version $RELEASE"
+        --user $USERNAME \
+        --repo $REPO \
+        --tag $RELEASE \
+        --name "$RELEASE" \
+        --description "Release version $RELEASE" \
+        --pre-release
 
     github-release upload \
-    --user $USERNAME \
-    --repo $REPO \
-    --tag $RELEASE \
-    --name "relay" \
-    --file dist/relay
+        --user $USERNAME \
+        --repo $REPO \
+        --tag $RELEASE \
+        --name "relay" \
+        --file dist/relay
 fi
