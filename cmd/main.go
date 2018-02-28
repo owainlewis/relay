@@ -13,7 +13,6 @@ import (
 
 var version = ""
 
-// Split the key value pairs used to define custom params into a map
 func parseParams(input string) (map[string]string, error) {
 	params := make(map[string]string)
 	parts := strings.Fields(input)
@@ -28,9 +27,6 @@ func parseParams(input string) (map[string]string, error) {
 	return params, nil
 }
 
-// Extra a map of strings to use as params from CLI args.
-// Note the abstraction is a bit vague here (which args to pass).
-// Tighten this up when abstractions are clearer
 func extractParamsFromArgs(args []string) (map[string]string, error) {
 	var parameters string
 	flagSet := flag.NewFlagSet("Request params", flag.ExitOnError)
@@ -46,14 +42,9 @@ func extractParamsFromArgs(args []string) (map[string]string, error) {
 }
 
 func getRequestFromFile(filename string, params map[string]string) (*parser.RequestItem, error) {
-	req, err := parser.ParseFile(filename, params)
-	if err != nil {
-		return nil, err
-	}
-	return req, nil
+	return parser.ParseFile(filename, params)
 }
 
-// Runs a single request yaml file
 func run(filename string, params map[string]string) error {
 	requestItem, err := getRequestFromFile(filename, params)
 	if err != nil {
